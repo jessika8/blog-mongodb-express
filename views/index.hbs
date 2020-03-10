@@ -1,0 +1,33 @@
+
+
+{{!-- Now we must make the links clickable in the index.edge file so that we can click a title, and be brought to the single post view. Note the addition of the anchor tag which links to the unique post id of each blog post. --}}
+<section class="hero is-medium is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Blog Blog Blog
+      </h1>
+      <h2 class="subtitle">
+        Something about this blog
+      </h2>
+    </div>
+  </div>
+</section>
+           {{#each posts}}
+            {{#each this}}
+        <div class="post-preview">
+        
+            <a href="/post/{{ this._id }}">         
+            {{this.title}}
+                {{!-- <p>Posted by:
+                 <a href="#">{{ this.username }}</a>
+            on {{ this.createdAt.toDateString() }}
+          </p>   --}}
+
+
+          
+          </a>
+         </div>
+     
+        {{/each}}
+      {{/each}}

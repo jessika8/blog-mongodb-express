@@ -1,0 +1,25 @@
+
+<header class="masthead" style="background-image: url('{{ post.image }}')"></header>
+<h1>Posts</h1>
+
+<div>
+        {{#if postObject}}
+                {{#each postObject}}
+                        <h1 class="is-size-1" >{{this.title}}</h1>
+                        <h3 class="is-size-4">{{this.content}}</h3>
+                        <h5>{{this.username}}</h5>
+                        <p>{{this.decription}}</p>
+                        <p class="is-size-7">{{this.createdAt}}</p>
+                        {{!-- <h1>{{@key}}: {{this}}</h1> --}}
+                {{/each}}
+
+        {{else}}
+                {{#each myFuckingObj}}
+
+           <p> {{ this }} </p>
+           
+     {{/each}}
+     {{/if}}
+
+</div>
+</header>

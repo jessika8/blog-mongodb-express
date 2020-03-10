@@ -1,0 +1,48 @@
+<h1>Create A New Account</h1>
+
+<form action="/users/register" method="POST" encType="multipart/form-data">
+
+<div class="field">
+  <label class="label">Username</label>
+  <div class="control has-icons-left has-icons-right">
+    <input class="input is-success" name="username" type="text" placeholder="Username" value="bulma">
+    <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </div>
+  <p class="help is-success">This username is available</p>
+</div>
+<div class="field">
+    <label class="label">Email</label>
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="email" name="email" placeholder="Email">
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+</div>
+<div class="field">
+    <label class="label">Password</label>
+  <p class="control has-icons-left">
+    <input class="input" type="password" name="password" placeholder="Password">
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <p class="control">
+    <button class="button is-success">
+      Register Now
+    </button>
+  </p>
+</div>
+
+
+</form>
