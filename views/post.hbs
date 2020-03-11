@@ -1,22 +1,46 @@
 
-<header class="masthead" style="background-image: url('{{ post.image }}')"></header>
-<h1>Posts</h1>
+<header class="masthead" style="background-image: url('{{ post.image }}')">
+<section class="hero is-medium is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        All the posts
+      </h1>
+      <h2 class="subtitle">
+        Everything is here
+      </h2>
+    </div>
+  </div>
+</section>
 
 <div>
         {{#if postObject}}
                 {{#each postObject}}
+                {{#if @last}}
+                 <img src="data:image/jpg;base64,{{this}}" alt="why u no work?">
+                {{!-- <div style='background:url(data:image/jpg;base64,{{this.image}})repeat-x center;'></div> --}}
+
+                {{else}}
+                        {{!-- <img src="{{this.image}}" alt=""> --}}
                         <h1 class="is-size-1" >{{this.title}}</h1>
                         <h3 class="is-size-4">{{this.content}}</h3>
                         <h5>{{this.username}}</h5>
                         <p>{{this.decription}}</p>
                         <p class="is-size-7">{{this.createdAt}}</p>
                         {{!-- <h1>{{@key}}: {{this}}</h1> --}}
+                        {{/if}}
                 {{/each}}
 
         {{else}}
                 {{#each myFuckingObj}}
+                {{#if @last}}
+                <img src="data:image/jpg;base64,{{this}}" alt="why u no work?">
 
-           <p> {{ this }} </p>
+                {{else}}
+                                {{this}}
+
+                {{/if}}
+        
            
      {{/each}}
      {{/if}}
