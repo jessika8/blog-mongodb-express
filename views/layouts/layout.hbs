@@ -10,9 +10,25 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body>
+{{!-- {{if loggedIn}} --}}
+{{!-- {{#if auth}} --}}
+      {{> loginNavbar}}
+      {{!-- {{else}} --}}
+      {{!-- {{> bloggerNavbar}} --}}
+      {{!-- {{/if}} --}}
 
-      {{> navbar}}
+      {{!-- {{else}} --}}
     {{{body}}}
+{{#if login }}
+<p>fuck off</p>
+{{else}}
+<p>no {{login}}</p>
+{{/if}}
+    {{!-- {{if loggedIn}}
+      {{> navbar}}\
+      {{else}} --}}
+
+    
   {{!-- <section class="section">
     <div class="container">
       <h1 class="title">

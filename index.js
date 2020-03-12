@@ -8,19 +8,28 @@ const fileUpload = require('express-fileupload');
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const mongoStore = connectMongo(expressSession);
+const nanoID = require('nanoid');
 
 
 require('dotenv').config()
-
 
 const createPostController = require('./controllers/createPost')
 const homePageController = require('./controllers/homePage')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
-const createUserController = require("./controllers/createUser");
-const storeUserController = require('./controllers/storeUser');
-const loginController = require("./controllers/login");
-const loginUserController = require('./controllers/loginUser');
+const getCreateUserController = require("./controllers/createUser");
+const postStoreUserController = require('./controllers/storeUser');
+const getLoginController = require("./controllers/getLogin");
+const postLoginUserController = require('./controllers/postLoginUser');
+const getFullBlogPostController = require('./controllers/getFullBlogPost')
+const getContactController = require('./controllers/getContact');
+const getAbout = require('./controllers/getAbout');
+const getFirstPage = require('./controllers/getFirstPage');
+
+const storePost = require('./middleware/storePost')
+// app.use('/posts/store', storePost)
+const auth = require("./middleware/checkLoggedin");
+const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated')
 
 const Post = require('./database/models/Post')
 
@@ -56,65 +65,88 @@ app.use(expressSession({
     }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 2
-    }
+    },
+    genid: (req) => {return nanoID()}
 }));
 
+const User = require('./database/models/User')
 
+const Session = require('./database/models/Session')
 
-const storePost = require('./middleware/storePost')
-
-app.use('/posts/store', storePost)
- 
-
-app.get('/firstpage', (req, res) => {
-    res.render('firstpage')
-})
-
-app.get('/about', (req, res) => {
-    res.render('about')
-});
-
-app.get('/contact', (req, res) => {
-    res.render('contact')
-});
-
-
-app.get('/post', async (req, res) => {
-    const posts = await Post.find({});
-    
-    let postObject = []
-   
-
-    for (const post of posts) {
-        console.log(post.title);
-
-        let objb= {
-            image: post.image,
-            title: post.title,
-            content: post.content,
-            description: post.decription,
-            username:post.username,
-            createdAt: post.createdAt
-
+const isLoggedIn = (req) => {
+    Session.findById(req.session.userId, (error, user) => {
+        console.log(user);
+        
+        if ( !user) {
+            return false
         }
-        postObject.push(objb);
-    }
-    
-  
-    res.render('post', {postObject})
+ 
+        return true
+    })
+}
 
+app.use(function(req, res, next) {
+    res.locals.login = isLoggedIn(req);
+    next()
 })
+
 
 app.get("/", homePageController);
 app.get("/post/:id", getPostController);
 app.get("/posts/new", createPostController);
 app.post("/posts/store", storePostController);
-app.get("/auth/register", createUserController);
-app.post("/users/register", storeUserController);
-app.get('/auth/login', loginController);
-app.post('/users/login', loginUserController);
+app.get("/auth/register", getCreateUserController);
+app.post("/users/register", postStoreUserController);
+app.get('/auth/login', getLoginController);
+app.post('/users/login', postLoginUserController);
+app.get('/post', getFullBlogPostController);
+app.get('/contact', getContactController);
+app.get('/about', getAbout);
+app.get('/firstpage', getFirstPage);
 
 
+
+// app.use('/posts/store', storePost)
+ 
+
+// app.get('/firstpage', (req, res) => {
+//     res.render('firstpage')
+// })
+
+// app.get('/about', (req, res) => {
+//     res.render('about')
+// });
+
+// app.get('/contact', (req, res) => {
+//     res.render('contact')
+// });
+
+
+// app.get('/post', async (req, res) => {
+//     const posts = await Post.find({});
+    
+//     let postObject = []
+   
+
+//     for (const post of posts) {
+//         console.log(post.title);
+
+//         let objb= {
+//             title: post.title,
+//             content: post.content,
+//             description: post.decription,
+//             username:post.username,
+//             createdAt: post.createdAt,
+//             image: post.image,
+
+//         }
+//         postObject.push(objb);
+//     }
+    
+  
+//     res.render('post', {postObject})
+
+// })
 
 
  

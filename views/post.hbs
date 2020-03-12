@@ -13,22 +13,29 @@
   </div>
 </section>
 
+<body>
+  <section class="section">
+    <div class="container">
+
 <div>
-        {{#if postObject}}
+
+  
+  {{!-- array of objects --}}
+        {{#if postObject}} 
                 {{#each postObject}}
-                {{#if @last}}
-                 <img src="data:image/jpg;base64,{{this}}" alt="why u no work?">
+                {{!-- {{#if @last}} --}}
+                 <img src="data:image/jpg;base64,{{this.image}}" alt="why u no work?">
                 {{!-- <div style='background:url(data:image/jpg;base64,{{this.image}})repeat-x center;'></div> --}}
 
-                {{else}}
+                {{!-- {{else}} --}}
                         {{!-- <img src="{{this.image}}" alt=""> --}}
                         <h1 class="is-size-1" >{{this.title}}</h1>
                         <h3 class="is-size-4">{{this.content}}</h3>
                         <h5>{{this.username}}</h5>
                         <p>{{this.decription}}</p>
                         <p class="is-size-7">{{this.createdAt}}</p>
-                        {{!-- <h1>{{@key}}: {{this}}</h1> --}}
-                        {{/if}}
+                        
+                        {{!-- {{/if}} --}}
                 {{/each}}
 
         {{else}}
@@ -47,3 +54,6 @@
 
 </div>
 </header>
+
+ </section>
+</body>
