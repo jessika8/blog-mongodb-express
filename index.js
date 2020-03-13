@@ -25,13 +25,16 @@ const getFullBlogPostController = require('./controllers/getFullBlogPost')
 const getContactController = require('./controllers/getContact');
 const getAbout = require('./controllers/getAbout');
 const getFirstPage = require('./controllers/getFirstPage');
+const logoutController = require('./controllers/logout');
 
-const storePost = require('./middleware/storePost')
+// const storePost = require('./middleware/storePost')
 // app.use('/posts/store', storePost)
-const auth = require("./middleware/checkLoggedin");
-const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated')
+// const auth = require("./middleware/checkLoggedin");
+// const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated')
 
-const Post = require('./database/models/Post')
+// const Post = require('./database/models/Post')
+
+const isLoggedIn = require('./controllers/isLoggedIn')
 
 
 const app = express();
@@ -71,22 +74,12 @@ app.use(expressSession({
 
 const User = require('./database/models/User')
 
-const Session = require('./database/models/Session')
 
-const isLoggedIn = (req) => {
-    Session.findById(req.session.userId, (error, user) => {
-        console.log(user);
-        
-        if ( !user) {
-            return false
-        }
- 
-        return true
-    })
-}
 
-app.use(function(req, res, next) {
-    res.locals.login = isLoggedIn(req);
+app.use(async(req, res, next) =>{
+    res.locals.login = await isLoggedIn(req);
+    // console.log(res.locals.login);
+    
     next()
 })
 
@@ -103,8 +96,49 @@ app.get('/post', getFullBlogPostController);
 app.get('/contact', getContactController);
 app.get('/about', getAbout);
 app.get('/firstpage', getFirstPage);
+app.get('/logout', logoutController);
 
 
+app.listen(8080, () => {
+    console.log("Server on port 8080");
+    
+})
+
+// const Session = require('./database/models/Session')
+
+// const isLoggedIn = (req) => {
+//     return new Promise((resolve, reject) => {
+//         Session.find({}, (err, docs) => {
+//             if (err) reject(err);
+
+//             if(docs.length == 0) {
+//                 resolve (false)
+//             }
+
+//             for (const doc of docs) {
+//                 console.log(doc)
+//                 if(req.session.sessionID == JSON.parse(doc.session).sessionID) {
+//                     resolve(true)
+//                 }
+//             }
+
+//             resolve(false)
+//         })
+//     });
+// }
+
+
+// const isLoggedIn = (req) => {
+//     Session.findById(req.session.userId, (error, user) => {
+//         console.log(user);
+        
+//         if ( !user) {
+//             return false
+//         }
+ 
+//         return true
+//     })
+// }
 
 // app.use('/posts/store', storePost)
  
@@ -205,7 +239,7 @@ app.get('/firstpage', getFirstPage);
 // });
 
 
-app.listen(8080, () => {
-    console.log("Server on port 8080");
+// app.listen(8080, () => {
+//     console.log("Server on port 8080");
     
-})
+// })

@@ -7,13 +7,15 @@ module.exports = (req, res) => {
 
 
     const {email, password} = req.body;
-    Session.findOne({email}, (error, user) => {
-        console.log(user);
+    User.findOne({email}, (error, user) => {
+        console.log('fuuuuuuuuuuuuuu', user);
         
         if (user) {
             // compare passwords.
             bcrypt.compare(password, user.password, (error, same) => {
                 if (same) {
+                    console.log('is same');
+                    
                     req.session.sessionID = req.sessionID;
                     req.session.save();
 

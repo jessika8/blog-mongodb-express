@@ -1,6 +1,6 @@
 
 module.exports = (req, res) => {
-    if (req.session.userId) {
+    if (req.session.sessionID) {
         return res.render("create");
     }
  

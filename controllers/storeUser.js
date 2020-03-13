@@ -13,6 +13,10 @@ module.exports = (req, res) => {
         email: req.body.email,
         password: req.body.password
     });
-    user.save()
+    user.save();
+
+    req.session.sessionID = req.sessionID;
+    req.session.save();
+    
     res.redirect('/')
 }
