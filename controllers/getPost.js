@@ -6,9 +6,11 @@ module.exports = async (req, res) => {
     
     const post = await Post.findById(req.params.id)
 
-    console.log(post.description);
+    // console.log(post);
     
-    let myFuckingObj = {
+    // console.log(post.description);
+    
+    let getHalfPostObj = {
         title: post.title,
         content: post.content,
         decription: post.description,
@@ -16,6 +18,6 @@ module.exports = async (req, res) => {
     }
 
 
-    res.render('post', {myFuckingObj})
+    res.render('post', {getHalfPostObj, postID: post._id})
   
 }

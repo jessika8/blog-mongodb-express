@@ -27,6 +27,7 @@ const getAbout = require('./controllers/getAbout');
 const getFirstPage = require('./controllers/getFirstPage');
 const logoutController = require('./controllers/logout');
 const deletePost = require('./controllers/deletePost');
+const getDeletePost = require('./controllers/getDelete');
 
 // const storePost = require('./middleware/storePost')
 // app.use('/posts/store', storePost)
@@ -98,7 +99,8 @@ app.get('/contact', getContactController);
 app.get('/about', getAbout);
 app.get('/firstpage', getFirstPage);
 app.get('/logout', logoutController);
-app.get('/delete', deletePost);
+app.get('/delete/:postID', deletePost);
+app.get('/delete', getDeletePost);
 
 
 app.listen(process.env.PORT || 8080, () => {

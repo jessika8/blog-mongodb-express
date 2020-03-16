@@ -3,22 +3,14 @@ const Post = require('../database/models/Post')
 module.exports = async (req, res) => {
 
 
-    const result = await 
-
-    posts.deleteOne({_id:result._id})
+    // const result = await Post.findByIdAndDelete(req.params.id)
+    // console.log(result.id);
+    // console.log(req.params.postID);
     
-    // const post = await Post.findById(req.params.id)
+   Post.findByIdAndDelete({'_id': req.params.postID}, (err)=>{
+// console.log(err);
+// console.log(req.params.id);
+   } )
 
-    // console.log(post.description);
-    
-    // let myFuckingObj = {
-    //     title: post.title,
-    //     content: post.content,
-    //     decription: post.description,
-    //     image: post.image
-    // }
-
-
-    // res.render('post', {myFuckingObj})
-  
+  res.render('delete')
 }
