@@ -26,6 +26,7 @@ const getContactController = require('./controllers/getContact');
 const getAbout = require('./controllers/getAbout');
 const getFirstPage = require('./controllers/getFirstPage');
 const logoutController = require('./controllers/logout');
+const deletePost = require('./controllers/deletePost');
 
 // const storePost = require('./middleware/storePost')
 // app.use('/posts/store', storePost)
@@ -97,9 +98,10 @@ app.get('/contact', getContactController);
 app.get('/about', getAbout);
 app.get('/firstpage', getFirstPage);
 app.get('/logout', logoutController);
+app.get('/delete', deletePost);
 
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log("Server on port 8080");
     
 })
