@@ -1,94 +1,95 @@
-
 <header class="masthead" style="background-image: url('{{ post.image }}')">
-<section class="hero is-medium is-primary is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        All the posts
-      </h1>
-      <h2 class="subtitle">
-        Everything is here
-      </h2>
-    </div>
-  </div>
-</section>
-
-<body>
-  <section class="section">
-    <div class="container">
-
-<div>
-
-  
-  {{!-- array of objects --}}
-        {{#if postObject}} 
-                {{#each postObject}}
-                {{!-- {{#if @last}} --}}
-                 <img src="data:image/jpg;base64,{{this.image}}" alt="why u no work?">
-                {{!-- <div style='background:url(data:image/jpg;base64,{{this.image}})repeat-x center;'></div> --}}
-
-                {{!-- {{else}} --}}
-                        {{!-- <img src="{{this.image}}" alt=""> --}}
-                        <h1 class="is-size-1" >{{this.title}}</h1>
-                        <h3 class="is-size-5">{{this.content}}</h3>
-                        <h5>{{this.username}}</h5>
-                        <p>{{this.decription}}</p>
-                        <p class="is-size-7">{{this.createdAt}}</p>
-                        <br>
-                        <br>
-                        {{#if login}}
-                        <article class="media">
-  <figure class="media-left">
-    <p class="image is-64x64">
-      <img src="https://bulma.io/images/placeholders/128x128.png">
-    </p>
-  </figure>
-  <div class="media-content">
-    <div class="content">
-      <p>
-        <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-        <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-      </p>
-    </div>
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-reply"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-heart"></i></span>
-        </a>
+  <section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          All the posts
+        </h1>
+        <h2 class="subtitle">
+          Everything is here
+        </h2>
       </div>
-    </nav>
-  </div>
-  <div class="media-right">
-    <button class="delete"></button>
-  </div>
-</article>
-{{/if}}
+    </div>
+  </section>
 
-                        <br><br>
-                        
-                        {{!-- {{/if}} --}}
-                {{/each}}
+  <body>
+    <section class="section">
+      <div class="container">
 
-        {{else}}
-                {{#each getHalfPostObj}}
-                {{#if @last}}
-                <img src="data:image/jpg;base64,{{this}}" alt="why u no work?">
+        <div>
+
+
+            {{#each getHalfPostObj}}
+              {{#if @last}}
+               <img src="data:image/jpg;base64,{{this}}" alt="why u no work?">
+               <br>
+
+              {{else}}
+                {{this}}
+               
                 <br>
 
-                {{else}}
-                                {{this}}
+              {{/if}}
 
-                {{/if}}
-           
-                {{/each}}
+          {{/each}}
+
+          
                 {{#if login}}
+                
+                     <a href="/delete/{{postID}}">
+      <button  class="button is-danger is-outlined">
+                          <span>Delete post</span>
+                          <span class="icon is-small">
+                         <i class="fas fa-times"></i>
+                           </span>
+                          </button>
+                          </a>
+                          <br>
+                          <br>
+
+          <form action="/post/{{postID}}" method="POST" >
+            <article class="media">
+              <div class="media-content">
+                <div class="field">
+                  <p class="control">
+                    <textarea class="textarea" name="comment" placeholder="Add a comment..."></textarea>
+                  </p>
+                </div>
+                <nav class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <input type="submit" class="button is-info">
+                    </div>
+                  </div>
+                </nav>
+                <br>
+              </div>
+            </article>
+          </form>
+          {{/if}}
+
+            {{#each commentObject}}
+      
+          <article class="media">
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>{{this.username}}</strong>  <small>{{this.createdAt}}</small>
+                  <br>
+                  {{this.comment}}
+                </p>
+              </div>
+            
+            </div>
+            <div class="media-right">
+              <button class="delete"></button>
+            </div>
+          </article>
+            
+          {{/each}}
+        
+          
+          {{!-- {{#if login}}
                  <a href="/delete/{{postID}}">
       <button  class="button is-danger is-outlined">
                           <span>Delete post</span>
@@ -97,13 +98,13 @@
                            </span>
                           </button>
                           </a>
-                          {{/if}}
+                          {{/if}} --}}
 
-     {{/if}}
-    
+          {{!-- {{/if}} --}}
+{{!--  --}}
 
-</div>
+        </div>
 </header>
 
- </section>
+</section>
 </body>

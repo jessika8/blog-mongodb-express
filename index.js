@@ -28,6 +28,8 @@ const getFirstPage = require('./controllers/getFirstPage');
 const logoutController = require('./controllers/logout');
 const deletePost = require('./controllers/deletePost');
 const getDeletePost = require('./controllers/getDelete');
+// const getComment = require('./controllers/getComment');
+const postComment = require('./controllers/postComment');''
 
 // const storePost = require('./middleware/storePost')
 // app.use('/posts/store', storePost)
@@ -87,7 +89,7 @@ app.use(async(req, res, next) =>{
 
 
 app.get("/", homePageController);
-app.get("/post/:id", getPostController);
+app.get("/post/:postID", getPostController);
 app.get("/posts/new", createPostController);
 app.post("/posts/store", storePostController);
 app.get("/auth/register", getCreateUserController);
@@ -101,6 +103,7 @@ app.get('/firstpage', getFirstPage);
 app.get('/logout', logoutController);
 app.get('/delete/:postID', deletePost);
 app.get('/delete', getDeletePost);
+app.post('/post/:postID', postComment);
 
 
 app.listen(process.env.PORT || 8080, () => {

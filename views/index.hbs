@@ -16,25 +16,6 @@
   </div>
 
 </section>
-  {{!-- <p>check out some of my blog posts</p> --}}
-           {{!-- {{#each posts}}
-            {{#each this}}
-        <div class="post-preview">
-        
-            <a class="is-size-1" href="/post/{{ this._id }}">         
-            {{this.title}} --}}
-                {{!-- <p>Posted by:
-                 <a href="#">{{ this.username }}</a>
-            on {{ this.createdAt.toDateString() }}
-          </p>   --}}
-
-
-{{!--           
-          </a>
-         </div>
-     
-        {{/each}}
-      {{/each}} --}}
 
  <section class="hero is-light">
   <div class="hero-body">
@@ -50,28 +31,19 @@ Check out some of my blog posts:
             {{#each this}}
         <div class="post-preview">
         
-            <a class="is-size-4" href="/post/{{ this._id }}">         
+            <a class="is-size-2" href="/post/{{ this._id }}">         
             {{this.title}}
                 {{!-- <p>Posted by:
                  <a href="#">{{ this.username }}</a>
             on {{ this.createdAt.toDateString() }}
           </p>   --}}
-
-
-          
           </a>
+          <p>{{this.content}}</p>
+          <p>{{this.username}}</p>
          </div>
-     
         {{/each}}
       {{/each}}
-        <br>
-        <br>
-        <br>
-        <br>
-        <br><br><br><br>
-
-
-        
+      
       </h2>
     </div>
   </div>
