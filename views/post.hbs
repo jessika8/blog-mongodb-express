@@ -3,10 +3,10 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          All the posts
+          Post
         </h1>
         <h2 class="subtitle">
-          Everything is here
+          Read a single post
         </h2>
       </div>
     </div>
@@ -34,7 +34,7 @@
           {{/each}}
 
           
-                {{#if login}}
+                {{#if admin}}
                 
                      <a href="/delete/{{postID}}">
       <button  class="button is-danger is-outlined">
@@ -46,7 +46,9 @@
                           </a>
                           <br>
                           <br>
+                          {{/if}}
 
+            {{#if login}}
           <form action="/post/{{postID}}" method="POST" >
             <article class="media">
               <div class="media-content">

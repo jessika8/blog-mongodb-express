@@ -28,8 +28,8 @@
         Home
       </a>
 
-      <a href="/post" class="navbar-item">
-        BlogPosts
+      <a href="/about" class="navbar-item">
+        About
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -38,8 +38,11 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a href="/about" class="navbar-item">
+          {{!-- <a href="/about" class="navbar-item">
             About
+          </a> --}}
+          <a href="/contact" class="navbar-item">
+            Contact
           </a>
           <a href="/auth/register" class="navbar-item">
             Register Now
@@ -47,13 +50,10 @@
           {{!-- <a class="navbar-item">
             Jobs
           </a> --}}
-          <a href="/contact" class="navbar-item">
-            Contact
+          
+          <a href="/auth/admin" class="navbar-item">
+            Admin
           </a>
-          {{!-- <hr class="navbar-divider">
-          <a href="/posts/new" class="navbar-item">
-            Create a post
-          </a> --}}
         </div>
       </div>
     </div>

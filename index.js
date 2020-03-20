@@ -29,7 +29,9 @@ const logoutController = require('./controllers/logout');
 const deletePost = require('./controllers/deletePost');
 const getDeletePost = require('./controllers/getDelete');
 // const getComment = require('./controllers/getComment');
-const postComment = require('./controllers/postComment');''
+const postComment = require('./controllers/postComment');
+const postAdmin = require('./controllers/postAdmin')
+const getAdmin = require('./controllers/getAdmin')
 
 // const storePost = require('./middleware/storePost')
 // app.use('/posts/store', storePost)
@@ -104,6 +106,8 @@ app.get('/logout', logoutController);
 app.get('/delete/:postID', deletePost);
 app.get('/delete', getDeletePost);
 app.post('/post/:postID', postComment);
+app.get('/auth/admin', getAdmin)
+app.post('/posts/admin', postAdmin)
 
 
 app.listen(process.env.PORT || 8080, () => {
