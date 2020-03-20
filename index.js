@@ -33,6 +33,7 @@ const postComment = require('./controllers/postComment');
 const postAdmin = require('./controllers/postAdmin')
 const getAdmin = require('./controllers/getAdmin')
 
+
 // const storePost = require('./middleware/storePost')
 // app.use('/posts/store', storePost)
 // const auth = require("./middleware/checkLoggedin");
@@ -84,6 +85,12 @@ const User = require('./database/models/User')
 
 app.use(async(req, res, next) =>{
     res.locals.login = await isLoggedIn(req);
+
+    if(req.session.admin) {
+        res.locals.admin = true
+    }
+    
+    //if req.session.admin
     // console.log(res.locals.login);
     
     next()

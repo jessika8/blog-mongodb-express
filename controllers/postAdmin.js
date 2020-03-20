@@ -13,7 +13,8 @@ module.exports = (req, res) => {
         if (password == process.env.ADMIN) {
             res.render('create')
             req.session.sessionID = req.sessionID;
+            req.session.admin = true
                     req.session.save();
-                    req.session.admin = true
+                    
     }
 }
